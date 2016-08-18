@@ -22,9 +22,7 @@ class BetterDoctorTest < ActiveSupport::TestCase
   end
 
   test "re-raise exceptions as BetterDoctor errors" do
-    stub_request(:get, expected_base_url)
-      .with(query: {"name" => "John Doe", "user_key" => "demo"})
-      .to_raise(Errno::ECONNREFUSED)
+    stub_request_with_exception
 
     assert_raises(BetterDoctor::Error) do
       BetterDoctor.search("John Doe")
@@ -35,6 +33,12 @@ class BetterDoctorTest < ActiveSupport::TestCase
     stub_request(:get, expected_base_url)
       .with(query: {"name" => "John Doe", "user_key" => "demo"})
       .to_return(body: '{"name": "John"}')
+  end
+
+  def stub_request_with_exception
+    stub_request(:get, expected_base_url)
+      .with(query: {"name" => "John Doe", "user_key" => "demo"})
+      .to_raise(Errno::ECONNREFUSED)
   end
 
   def expected_base_url
