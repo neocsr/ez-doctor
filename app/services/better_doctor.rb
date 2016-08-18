@@ -9,4 +9,9 @@ class BetterDoctor
     resp.body
   end
 
+  def self.cached_search(name)
+    Rails.cache.fetch(name, expires_in: 30.minutes) do
+      search(name)
+    end
+  end
 end

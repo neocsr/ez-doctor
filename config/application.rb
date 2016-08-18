@@ -29,5 +29,6 @@ module EzDoctor
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
     config.better_doctor = config_for(:better_doctor)
+    config.cache_store = :memory_store, { size: 64.megabytes }
   end
 end
