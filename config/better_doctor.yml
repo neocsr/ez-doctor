@@ -1,17 +1,23 @@
 development:
-  host: localhost
-  port: 4000
+  host: https://api.betterdoctor.com
+  port: 443
   open_timeout: 2
   read_timeout: 3
+  api_version: '2016-03-01'
+  user_key: <%= ENV["USER_KEY"] %>
 
 test:
   host: localhost
   port: 4000
   open_timeout: 2
   read_timeout: 3
+  api_version: '2016-03-01'
+  user_key: demo
 
 production:
-  host: localhost
-  port: 4000
+  host: https://api.betterdoctor.com
+  port: 443
   open_timeout: 2
   read_timeout: 3
+  api_version: '2016-03-01'
+  user_key: <%= ENV["USER_KEY"] %>
