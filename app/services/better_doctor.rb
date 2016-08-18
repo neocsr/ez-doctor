@@ -6,6 +6,8 @@ class BetterDoctor
   include HTTParty
 
   base_uri "#{CONFIG['host']}:#{CONFIG['port']}"
+  open_timeout CONFIG['open_timeout']
+  read_timeout CONFIG['read_timeout']
 
   def self.search(name)
     resp = get("/search", {query: {name: name}})
