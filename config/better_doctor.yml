@@ -1,0 +1,11 @@
+development:
+  host: localhost
+  port: 4000
+
+test:
+  host: localhost
+  port: 4000
+
+production:
+  host: localhost
+  port: 4000
