@@ -27,4 +27,14 @@ class BetterDoctorTest < ActiveSupport::TestCase
     assert_equal("{\"name\": \"John\"}", resp)
   end
 
+  test "re-raise exceptions as BetterDoctor errors" do
+    stub_request(:get, "http://localhost:4000/search")
+      .with(query: {"name" => "John Doe"})
+      .to_raise(Errno::ECONNREFUSED)
+
+    assert_raises(BetterDoctor::Error) do
+      BetterDoctor.search("John Doe")
+    end
+  end
+
 end

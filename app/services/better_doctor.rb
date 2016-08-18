@@ -1,4 +1,7 @@
 class BetterDoctor
+  class Error < StandardError
+  end
+
   CONFIG = Rails.configuration.better_doctor
   include HTTParty
 
@@ -7,6 +10,8 @@ class BetterDoctor
   def self.search(name)
     resp = get("/search", {query: {name: name}})
     resp.body
+  rescue => e
+    raise Error, "#{e.class}: #{e.message}"
   end
 
   def self.cached_search(name)
