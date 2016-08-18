@@ -35,4 +35,5 @@ group :development do
   gem 'guard-minitest'
   gem 'listen', '3.1.1'
   gem 'rb-fsevent' if `uname` =~ /Darwin/
+  gem 'webmock'
 end
