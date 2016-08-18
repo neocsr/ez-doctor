@@ -28,5 +28,9 @@ group :development do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
-end
 
+  gem 'guard'
+  gem 'guard-minitest'
+  gem 'listen', '3.1.1'
+  gem 'rb-fsevent' if `uname` =~ /Darwin/
+end
