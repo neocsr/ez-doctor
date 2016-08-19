@@ -12,7 +12,12 @@ class BetterDoctor
 
   def self.search(name)
     resp = get("/doctors", {query: {name: name, user_key: CONFIG['user_key']}})
-    resp.body
+
+    if Net::HTTPSuccess === resp.response
+      resp.body
+    else
+      raise Error, "#{resp.response.class}: #{resp.response.code}"
+    end
   rescue => e
     raise Error, "#{e.class}: #{e.message}"
   end
